@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJS</title>
+    <link rel="stylesheet" href="">
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-on:input="changeTitle"></input>
+        <!-- v-once keeps the initial value and outputs it regardless if it is changed later on -->
+        <h1 v-once>{{myText}}</h1>
+        <p>{{ myText }}</p>
+        <!-- v-bind tells vue not to use the normal html attribute. binds the data dynamically -->
+        <p>{{ sayHello() }} <a v-bind:href="link">Google</a></p>
+        <hr>
+
+        <!-- v-html allows us to pass the name of the property holding html code. -->
+        <p v-html="finishedLink"></p>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data: {
+                myText: 'Hello World!',
+                link: 'http://google.com',
+                finishedLink: '<a href="http://google.com">Google</a>'
+            },
+            methods: {
+                changeTitle: function(event) {
+                    this.myText = event.target.value;
+                },
+                sayHello: function() {
+                    this.myText = 'Hello!';
+                    return this.myText;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

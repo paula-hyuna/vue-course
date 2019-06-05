@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJS</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+    <!-- exclamation mark switches from true to false or false to true -->
+      <div 
+        class="demo" @click="attachRed = !attachRed"
+        :class="color">
+      </div>
+      <div class="demo" @click="attachGreen = !attachGreen" :class="{'green':attachGreen}"></div>
+      <div class="demo"></div>
+      <br><hr>
+      <input type="text" v-model="color">
+  
+    </div>
+
+    <script>
+        
+        new Vue({
+            el:'#app',
+            data: {
+                attachRed: false,
+                attachGreen: false,
+                color: 'green'
+            },
+            
+            methods: {
+               
+            }  
+
+        })
+
+    </script>
+</body>
+
+</html>

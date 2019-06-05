@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJS</title>
+    <link rel="stylesheet" href="">
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- v-on allows us to set up event listeners for any action -->
+        <button v-on:click="increase(2)">Click me</button>
+        <p>{{ counter }}</p>
+
+        <!-- stop modifier stops propagation of the event -->
+        <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} / {{ y }}
+                <span v-on:mousemove.stop="">DEAD SPOT</span>
+        </p>
+        <!-- can specify which key with .[nameofkey] -->
+        <input type="text" v-on:keyup.enter.space="alertMe">
+        <br><hr>
+        <h2>Two-way Binding</h2>
+        <!-- use v-model for two-way binding -->
+        <input type="text" v-model="output">
+        <p>{{ output }}</p>
+
+        
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data: {
+               counter: 0,
+               x: 0,
+               y: 0,
+               output: 'hello'
+            },
+            methods: {
+                increase: function (add) {
+                    this.counter+=add;
+                },
+                updateCoordinates: function(event) {
+                    this.x = event.clientX;
+                    this.y = event.clientY;
+                }, 
+                alertMe: function() {
+                    alert('Alert!');
+                }     
+            }  
+
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJS</title>
+    <link rel="stylesheet" href="">
+    <script src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- v-if attaches or removes an element from the DOM. Does not hide it -->
+		<p v-if="show">You can see me!</p>
+		<p v-else>Now you see me!</p>	
+		<p>Do you also see me?</p>
+
+		<!-- template can group multiple elements together for v-if. This is invisible in the DOM-->
+		<template v-if="show">
+			<h1>Heading</h1>
+			<p>Inside a template</p>
+		
+		</template>
+		<!-- v-show allows us to hide an element in the DOM. Uses display:none -->
+		<p v-show="show">Do you also see me?</p>
+
+		<!-- v-for allows us to replicate an element and add values to each -->
+		<ul>
+			<li v-for="(ingredient, i) in ingredients">{{ ingredient }} ({{ i }})</li>
+		</ul>
+		<hr>
+		<h3>Looping through objects</h3>
+			<ul>
+				<li v-for="person in persons">{{ person.name }}
+					<div v-for="(value, key, index) in person">{{ key }} : {{ value }} ({{ index }})</div>
+				</li>
+			</ul>
+		<hr><br>
+		<h3>Looping through numbers</h3>
+		<span v-for="n in 10">{{ n }}</span>
+		<button @click="show = !show">Switch</button>
+	</div>
+	
+	<script>
+		new Vue({
+			el:'#app',
+			data: {
+				ingredients: ['meat', 'fruit', 'cookies'],
+				persons: [
+					{name: 'Paula', age: 21, color:'green'},
+					{name: 'Anna', age: 'unknown', color: 'blue'}
+				],
+				show: true
+			}
+		});
+	</script>
+</body>	
+</html>
